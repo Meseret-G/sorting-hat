@@ -2,6 +2,7 @@ const randomHouses = ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"]
 const studentInTheHouse = [];
 const expelledArmy = [];
 
+
 //Render to DOM function
 const renderToDom = (divId, textToRender) => {
     const selectedDiv = document.querySelector(divId);
@@ -31,7 +32,7 @@ const studentForm = () => {
     </div>
        <button id="sortbutton" type="submit">Sumbit</button>
     </form>`;
-    document.querySelector("form").addEventListener("submit", sortButton);
+    document.querySelector("#form").addEventListener("submit", sortButton);
 };
 
 // function that prevents student form from displaying on the DOM before the button gets clicked
@@ -71,6 +72,7 @@ const sortButton = (event) => {
     };
     studentInTheHouse.push(object);
     studentHouseBuilder(studentInTheHouse);
+    event.preventDefault();
     document.querySelector("form").reset();
 };
 // Expel students to Voldy Army
@@ -80,8 +82,8 @@ const evictStudents = (event) => {
     if(targetType === "button") {
     const movedCard = studentInTheHouse.splice(targetId, 1);
     expelledArmy.push(movedCard[0]);
-    voldyArmyStudent(expelledArmy);
     studentHouseBuilder(studentInTheHouse);
+    voldyArmyStudent(expelledArmy);
     }
 };
 //Render cards for student's in Voldy Army
@@ -100,42 +102,67 @@ const voldyArmyStudent = (armyArray) => {
     renderToDom("#filterCards", domString);
 };
 
-//Add buttons to filter the non-expelled students by house
-/*const houseButton = () => {
+//Add buttons to filter students by house
+const houseButton = () => {
     const domString = `
         <button type="button" class="btn btn-outline-success" id = "All" >All</button>
         <button type="button" class="btn btn-outline-primary" id="Gryffindor">Gryffindor</button>
         <button type="button" class="btn btn-outline-secondary" id="Hufflepuff" >Hufflepuff</button>
         <button type="button" class="btn btn-outline-danger" id = "Ravenclaw">Ravenclaw</button>
-        <button type="button" class="btn btn-outline-danger" id = "Slytherin">Slytherin</button>
+        <button type="button" class="btn btn-outline-danger" id = "Slytherin">Slytherin</button> 
     `;
+    
     renderToDom("#buttonContainer", domString)
 };
-
-//filter students by house
-const houseFilter = (array, filter) => {
-    const arrangedByHouse = [];
-    array.forEach(studentInTheHouse => {
-        if (studentInTheHouse.filter === filter || studentInTheHouse.house === expelledArmy)
-        {
-            arrangedByHouse.push(studentInTheHouse) 
-        };
-    });
-    return arrangedByHouse;
+// filter the students by house
+const houseFilter = (array , house) => {
+    return array.filter((studentObject) => studentObject.house === house);
 };
 
-//Print filtered houses 
+// house filter button event handler
 const handleHouseFilter = (event) => {
     if (event.target.id === "All") {
         studentHouseBuilder(studentInTheHouse);
-    } else if (event.target.id === "button") {
-        studentHouseBuilder(houseFilter(studentInTheHouse.event.target.id));  
-        }
-    }; */
-//listen to the button click on the intro card and display the student form
+    }
+
+    if (event.target.id === "Gryffindor") {
+        const gryHouse = houseFilter (
+            studentInTheHouse.sort((x, y) => (x.name > y.name ? 1: -1)),
+            "Gryffindor"
+        );
+        studentHouseBuilder(gryHouse);
+    }
+    if (event.target.id === "Hufflepuff") {
+        const hufHouse = houseFilter (
+            studentInTheHouse.sort((x, y) => (x.name > y.name ? 1: -1)),
+            "Hufflepuff"
+        );
+        studentHouseBuilder(hufHouse);
+    }
+
+    if(event.target.id === "Ravenclaw") {
+        const ravHouse = houseFilter (
+            studentInTheHouse.sort((x, y) => (x.name > y.name ? 1: -1)),
+            "Ravenclaw"
+        );
+        studentHouseBuilder(ravHouse);
+    }
+    if (event.target.id === "Slytherin") {
+        const slyHouse = houseFilter (
+            studentInTheHouse.sort((x, y) => (x.name > y.name ? 1: -1)),
+            "Slytherin"
+        );
+        studentHouseBuilder(slyHouse);  
+    }
+
+    };
+
+//Event listener function
 const buttonEvent = () => {
     document.querySelector("#card").addEventListener("click", enterStudent);
     document.querySelector("#studentHouse").addEventListener("click",evictStudents);
+    document.querySelector("#buttonContainer").addEventListener("click", handleHouseFilter);
+    
 };
 
 // starts the application 
@@ -144,8 +171,8 @@ const init = () => {
     introCard();
     studentHouseBuilder(studentInTheHouse); 
     voldyArmyStudent(expelledArmy);
-    buttonEvent();
-    //houseButton();  
+    houseButton();
+    buttonEvent();  
 };
 
 init();
