@@ -14,7 +14,7 @@ const introCard = () => {
     <div class="card" >
     <div class="card-body">
       <h2 class="card-title">Welcome to Hoggy Warts</h2>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <p class="card-text">Hogwarts will always be there to welcome you home!</p>
       <a href="#" class="btn btn-primary" id="startbtn">Lets Go Sort</a>
     </div>
   </div>`;

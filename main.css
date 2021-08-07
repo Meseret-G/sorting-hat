@@ -10,5 +10,78 @@ body {
      margin-right: 300px;
      margin-top: 8px;
      justify-content: center;
-     background-color:lightpink;
+     background-color: lightseagreen;
+     text-align: center;
 }
+
+h2, p {
+    margin-top: auto;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.buttonstyle {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 25px;
+}
+
+#Gryffindor {
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: lightsalmon;
+    color: black;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bolder;
+    margin: 10px 10px;
+    height: 50px;
+    border-color: black;
+} 
+
+#All{
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: goldenrod;
+    color: black;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bolder;
+    margin: 10px 10px;
+    height: 50px;
+    border-color: black;
+} 
+
+#Hufflepuff {
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: lightslategray;
+    color: rgb(102, 67, 67);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bolder;
+    margin: 10px 10px;
+    height: 50px;
+    border-color: black;
+} 
+#Ravenclaw {
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color:lightskyblue;
+    color: black;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bolder;
+    margin: 10px 10px;
+    height: 50px;
+    border-color: black;
+} 
+
+#Slytherin {
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color:lightpink;
+    color: black;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bolder;
+    margin: 10px 10px;
+    height: 50px;
+    border-color: black;
+} 
